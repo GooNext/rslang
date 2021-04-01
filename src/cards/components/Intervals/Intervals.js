@@ -107,7 +107,7 @@ const Intervals = ({ wordId, userWord }) => {
     },
     {
       title: 'Легко',
-      bg: '#DB7CF5',
+      bg: '#7aa0eb',
       handleArgs: {
         shouldRepeat: false,
         difficulty: 'easy',
@@ -120,7 +120,7 @@ const Intervals = ({ wordId, userWord }) => {
     },
     {
       title: 'Средне',
-      bg: '#AA5DDB',
+      bg: '#007bff',
       handleArgs: {
         shouldRepeat: false,
         difficulty: 'medium',
@@ -133,7 +133,7 @@ const Intervals = ({ wordId, userWord }) => {
     },
     {
       title: 'Сложно',
-      bg: '#7348BF',
+      bg: '#1a00c5',
       handleArgs: {
         shouldRepeat: false,
         difficulty: 'hard',

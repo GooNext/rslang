@@ -72,7 +72,7 @@ const Statistics = () => {
     {
       title: 'Количество новых слов',
       value: newWords,
-      color: '#DB7CF5',
+      color: '#7aa0eb',
     },
     {
       title: 'Самая длинная серия верных ответов',

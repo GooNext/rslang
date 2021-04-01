@@ -73,15 +73,15 @@ const IntervalInfoWrapper = styled.div`
     }
     
     &.easy {
-      background: #DB7CF5;
+      background: #7aa0eb;
     }
     
     &.mid {
-      background: #AA5DDB;
+      background: #007bff;
     }
     
     &.hard {
-      background: #7348BF;
+      background: #1a00c5;
     }
    }
   }

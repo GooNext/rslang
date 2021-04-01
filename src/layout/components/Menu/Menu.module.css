@@ -20,11 +20,11 @@
   transition: max-width 300ms cubic-bezier(.04, .95, .91, .9) 10ms;
 }
 
-.MenuContainer:hover {
+/* .MenuContainer:hover {
   width     : 100%;
   max-width : 330px;
   transition: max-width 300ms cubic-bezier(.04, .95, .91, .9) 10ms;
-}
+} */
 
 
 .Menu {

@@ -22,16 +22,16 @@
 }
 
 .showAnswer {
-  background: #7348BF;
-  border: #7348BF;
+  background: #1a00c5;
+  border: #1a00c5;
 }
 
 .showAnswer:hover,
 .showAnswer:focus,
 .showAnswer:active {
   transform: scale(1.1);
-  background: #7348BF;
-  border: #7348BF;
+  background: #1a00c5;
+  border: #1a00c5;
 }
 
 @media (max-width: 767px) {

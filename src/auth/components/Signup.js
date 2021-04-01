@@ -60,6 +60,7 @@ const Signup = () => {
         </div>
       </Link>
       <form onSubmit={submitHandler} className={styles.Form}>
+        <h1 className="text-center mb-4">Регистрация</h1>
         <input
           type="text"
           placeholder="Имя"
@@ -85,11 +86,6 @@ const Signup = () => {
           autoComplete="new-password"
           required
         />
-        <p className={styles.PasswordInfo}>
-          Пароль должен содержать не менее 8 символов, как минимум одну
-          прописную букву,одну заглавную букву, одну цифру и один спецсимвол из
-          {'+-_@$!%*?&#.,;:[]{}'}
-        </p>
         <button type="submit" className={styles.Button} id="button-create">
           Создать аккаунт
         </button>
