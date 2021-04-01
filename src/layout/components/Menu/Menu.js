@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { logout } from '../../../auth/redux';
-import { emailSelector } from '../../../auth/redux/selectors';
 import NavItem from './NavItem/NavItem';
 import ToolBar from './ToolBar/ToolBar';
 
@@ -12,7 +11,6 @@ import classes from './Menu.module.css';
 
 function Menu() {
   const [position, toggle] = useState(false);
-  const email = useSelector(emailSelector);
   const dispatch = useDispatch();
   return (
     <>
@@ -31,14 +29,6 @@ function Menu() {
                 </Link>
               </div>
               <ul className={classes.NavList}>
-                <li className={classes.UserLogin}>
-                  <div className={classes.UserLoginInner}>
-                    <div className={classes.UserLoginIcon}>
-                      <img src="/assets/images/menu/profile.svg" alt="" />
-                    </div>
-                    <div className={classes.UserLoginLabel}>{email}</div>
-                  </div>
-                </li>
                 <NavItem title="Настройки" icon="filter.svg" link="/settings" />
                 <NavItem title="Мини игры" icon="london.svg" link="/games" />
                 <NavItem title="Карточки" icon="action.svg" link="/cards" />

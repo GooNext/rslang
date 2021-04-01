@@ -197,6 +197,12 @@ code {
   margin-left: 10px;
 }
 
+@media (max-width: 770px) {
+  .header-page {
+    margin-left: 0;
+  }
+}
+
 h1 {
   font-size: 32px!important;
   font-weight: 800;

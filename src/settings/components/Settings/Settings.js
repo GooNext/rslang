@@ -2,8 +2,11 @@ import React, {
   useState, useCallback, useMemo, useEffect,
 } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Row, Col,
+} from 'react-bootstrap';
 
+import { SettingOutlined } from '@ant-design/icons';
 import { fetchJSON } from '../../../common/utils';
 
 import { setSettings } from '../../redux';
@@ -65,17 +68,17 @@ const intervalsInfo = [
   {
     title: 'Легко',
     name: 'easyInterval',
-    bgColor: '#DB7CF5',
+    bgColor: '#7aa0eb',
   },
   {
     title: 'Средне',
     name: 'mediumInterval',
-    bgColor: '#AA5DDB',
+    bgColor: '#007bff',
   },
   {
     title: 'Сложно',
     name: 'hardInterval',
-    bgColor: '#7348BF',
+    bgColor: '#1a00c5',
   },
 ];
 
@@ -165,101 +168,123 @@ const Settings = () => {
     ))), [handleChange, formSettings]);
 
   return (
-    <form className={styles.Settings} onSubmit={handleSubmit}>
-      <div className={styles.CardsAmount}>
-        <h2>Количество карточек</h2>
-        <div className={styles.CardsAmountForm}>
-          <label htmlFor="newCardsAmount">
-            Новых слов в день
-            <input
-              type="number"
-              name="newCardsAmount"
-              id="newCardsAmount"
-              min={1}
-              value={formSettings.optional.newCardsAmount}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="wholeCardsAmount">
-            Максимальное количество карточек в день
-            <input
-              type="number"
-              name="wordsPerDay"
-              id="wordsPerDay"
-              min={1}
-              value={formSettings.wordsPerDay}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
+    <>
+      <div className="header-page">
+        <h1 className="game-title">
+          Настройки
+          <SettingOutlined />
+        </h1>
       </div>
-      <div className={styles.CardsDisplaySettings}>
-        <div>
-          <h2>Информация на карточках</h2>
-          {!checkedHints && (
-            <span style={{ color: 'red' }}>
-              Выберите хотя бы 1 пункт
-            </span>
-          )}
-          {createCheckboxes(cardsHintsInfo)}
-        </div>
-        <div>
-          <h2>Добавить кнопки к карточкам</h2>
-          {createCheckboxes(cardsBtnsInfo)}
-        </div>
-        <div>
-          <h2>Настроить интервалы повторения</h2>
-          {intervalsInfo.map(({ title, name, bgColor }) => (
-            <label key={name} htmlFor={name} className={styles.Intervals}>
-              <div style={{ backgroundColor: bgColor }}>
-                {title}
+      <form className={styles.Settings} onSubmit={handleSubmit}>
+        <Row>
+          <Col lg={12}>
+            <div className={styles.CardsAmount}>
+              <h2>Количество карточек</h2>
+              <div className={styles.CardsAmountForm}>
+                <Col>
+                  <label htmlFor="newCardsAmount">
+                    Новых слов в день
+                    <input
+                      type="number"
+                      name="newCardsAmount"
+                      id="newCardsAmount"
+                      min={1}
+                      value={formSettings.optional.newCardsAmount}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </Col>
+                <label htmlFor="wholeCardsAmount">
+            Максимальное количество карточек в день
+                  <input
+                    type="number"
+                    name="wordsPerDay"
+                    id="wordsPerDay"
+                    min={1}
+                    value={formSettings.wordsPerDay}
+                    onChange={handleChange}
+                  />
+                </label>
               </div>
-              <input
-                name={name}
-                id={name}
-                value={formSettings.optional[name]}
-                type="number"
-                onChange={handleChange}
-                min={1}
-              />
-            </label>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col lg={4}>
+            <h2>Информация на карточках</h2>
+            {!checkedHints && (
+              <span style={{ color: 'red' }}>
+                Выберите хотя бы 1 пункт
+              </span>
+            )}
+            {createCheckboxes(cardsHintsInfo)}
+          </Col>
+          <Col lg={4}>
+            <h2>Добавить кнопки к карточкам</h2>
+            {createCheckboxes(cardsBtnsInfo)}
+          </Col>
+          <Col lg={4}>
+            <h2>Настроить интервалы повторения</h2>
+            {intervalsInfo.map(({ title, name, bgColor }) => (
+              <label key={name} htmlFor={name} className={styles.Intervals}>
+                <div style={{
+                  marginLeft: 0,
+                  width: 20,
+                  height: 20,
+                  borderRadius: '50%',
+                  backgroundColor: bgColor,
+                }}
+                />
+                <div style={{ color: '#333' }}>
+                  {title}
+                </div>
+                <input
+                  name={name}
+                  id={name}
+                  value={formSettings.optional[name]}
+                  type="number"
+                  onChange={handleChange}
+                  min={1}
+                />
+              </label>
+            ))}
+          </Col>
+        </Row>
+        <div className={styles.CardsInteractions}>
+          {interactionsInfo.map(({ title, name }) => (
+            <div className={styles.Interaction} key={name}>
+              <h2>{title}</h2>
+              <label htmlFor={name} className={styles.Switch}>
+                <input
+                  name={name}
+                  id={name}
+                  checked={formSettings.optional[name]}
+                  type="checkbox"
+                  onChange={handleChange}
+                />
+                <span className={styles.Slider} />
+              </label>
+            </div>
           ))}
         </div>
-      </div>
-      <div className={styles.CardsInteractions}>
-        {interactionsInfo.map(({ title, name }) => (
-          <div className={styles.Interaction} key={name}>
-            <h2>{title}</h2>
-            <label htmlFor={name} className={styles.Switch}>
-              <input
-                name={name}
-                id={name}
-                checked={formSettings.optional[name]}
-                type="checkbox"
-                onChange={handleChange}
-              />
-              <span className={styles.Slider} />
-            </label>
-          </div>
-        ))}
-      </div>
-      <div className={styles.FormControls}>
-        <Button
-          variant="outline-primary"
-          onClick={cancelSubmit}
-          className={styles.OutlineButton}
-        >
+        <div className={styles.FormControls}>
+          <Button
+            variant="outline-primary"
+            onClick={cancelSubmit}
+            className={styles.OutlineButton}
+          >
           Отменить
-        </Button>
-        <Button
-          variant="primary"
-          type="submit"
-          className={styles.SubmitButton}
-        >
+          </Button>
+          <Button
+            variant="primary"
+            type="submit"
+            className={styles.SubmitButton}
+          >
           Сохранить
-        </Button>
-      </div>
-    </form>
+          </Button>
+        </div>
+      </form>
+    </>
   );
 };
 
