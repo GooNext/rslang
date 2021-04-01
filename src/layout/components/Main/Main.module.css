@@ -99,6 +99,10 @@
   margin-right: 7px;
 }
 
+.Radio label {
+  cursor: pointer;
+}
+
 .Radio {
   margin: 9% 0 0 0;
 }

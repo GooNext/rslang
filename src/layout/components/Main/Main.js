@@ -34,13 +34,14 @@ export default function Main() {
               values.map(({ value, label, defaultChecked = false }, index) => (
                 <div key={index} className={styles.Radio}>
                   <input
+                    id={index}
                     type="radio"
                     name="gameMode"
                     value={value}
                     defaultChecked={defaultChecked}
                     onClick={() => dispatch(setCardsMode(value))}
                   />
-                  {label}
+                  <label htmlFor={index}>{label}</label>
                 </div>
               ))
             }
