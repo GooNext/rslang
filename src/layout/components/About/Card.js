@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './Card.module.css';
-
+import styles from './Card.module.css';
+// style={{ backgroundColor: bgColor, ...style }}
 function Card({
-  photo, name, github, description, bgColor, role
+  photo, name, github, description, bgColor, role, style,
 }) {
   return (
-    <div className={style.CardWrapper} style={{ backgroundColor: bgColor }}>
+    <div className={styles.CardWrapper}>
       <img
-        className={style.image}
+        className={styles.image}
         src={photo}
         alt="photoDev"
       />
-      <div className={style.TextWrapper}>
-        <div className={style.Name}>
+      <div className={styles.TextWrapper}>
+        <div className={styles.Name}>
           <a
             href={github}
-            className={style.IconGit}
+            className={styles.IconGit}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -25,13 +25,13 @@ function Card({
               alt="iconGit"
             />
           </a>
-          <div className={style.NameDev}>
+          <div className={styles.NameDev}>
             {name}
             <br />
             {role}
           </div>
         </div>
-        <p className={style.TextDev}>
+        <p className={styles.TextDev}>
           {description}
         </p>
       </div>
@@ -46,6 +46,7 @@ Card.propTypes = {
   description: PropTypes.string,
   bgColor: PropTypes.string,
   role: PropTypes.string,
+  style: PropTypes.object,
 };
 
 Card.defaultProps = {

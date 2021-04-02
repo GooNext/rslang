@@ -4,9 +4,11 @@ import FeatureWrapper from './FeatureWrapper';
 
 const FeatureCard = ({ src, title, text }) => (
   <FeatureWrapper>
-    <img src={src} alt={title} />
-    <h6>{title}</h6>
-    <p>{text}</p>
+    <img width="100px" src={src} alt={title} />
+    <div>
+      <h6>{title}</h6>
+      <p>{text}</p>
+    </div>
   </FeatureWrapper>
 );
 
