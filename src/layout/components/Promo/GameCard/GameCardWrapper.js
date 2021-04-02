@@ -42,6 +42,9 @@ const GameCardWrapper = styled.div`
     color: #1F3F68;
     opacity: 0.6;
   }
+  .game_card_img {
+    width: 100px;
+  }
   
   .game_card_img_wrapper {
     height: 150px;
