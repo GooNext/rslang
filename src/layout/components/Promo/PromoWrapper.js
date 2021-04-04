@@ -5,6 +5,7 @@ const PromoWrapper = styled.div`
     background: url("./assets/images/promo/bg.png");
     background-size: 100% 100%;
     height: 95%;
+    overflow-x: hidden;
     img.main_page_img {
         width: 580px;
         margin-top: 100px;
@@ -18,6 +19,12 @@ const PromoWrapper = styled.div`
             background-size: contain;
             width: 60%;
             padding: 16px;
+        }
+    }
+
+    @media (max-width: 990px) {
+        .promo_animation {
+            display: none;
         }
     }
 
