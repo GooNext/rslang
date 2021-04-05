@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable max-len */
 import React from 'react';
 import Card from './Card';
 import style from './About.module.css';
