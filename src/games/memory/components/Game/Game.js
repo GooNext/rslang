@@ -6,15 +6,14 @@ import Timer from '../Timer/Timer';
 import Lives from '../Lives/Lives';
 import { GameOver } from '../PopUp/Modal';
 import style from './Game.module.css';
-import { setLevel } from '../../redux/index';
+import {
+  setLevel,
+  setStatusGame,
+} from '../../redux/index';
 import { levelSelector } from '../../redux/selectors';
 import Dictionary from '../Dictionary/Dictionary';
 import Rules from '../../../../common/components/Modals/Rules';
 import Exit from '../../../../common/components/Modals/Exit';
-
-import {
-  setStatusGame,
-} from '../../redux/index';
 
 function Game() {
   const dispatch = useDispatch();
@@ -139,8 +138,7 @@ function Game() {
             <div
               className={style.question}
             >
-              <Rules rules="Кликайте по словам, чтобы совместить слово и его перевод"
-              />
+              <Rules rules="Кликайте по словам, чтобы совместить слово и его перевод" />
             </div>
 
             <div className={style.Level}>

@@ -25,17 +25,17 @@ function GameOver({
                 transcription,
                 wordTranslate,
               }, index) => (
-                  <li
-                    key={index}
-                    className="learnedWord"
-                  >
-                    <div>
-                      <p>{`${word}`}</p>
-                      <p>{`${transcription}`}</p>
-                      <p>{`${wordTranslate}`}</p>
-                    </div>
-                  </li>
-                ))
+                <li
+                  key={index}
+                  className="learnedWord"
+                >
+                  <div>
+                    <p>{`${word}`}</p>
+                    <p>{`${transcription}`}</p>
+                    <p>{`${wordTranslate}`}</p>
+                  </div>
+                </li>
+              ))
             }
             {
               statistics.incorrect.map(({
@@ -43,16 +43,16 @@ function GameOver({
                 transcription,
                 wordTranslate,
               }, index) => (
-                  <li
-                    key={index}
-                  >
-                    <div>
-                      <p>{`${word}`}</p>
-                      <p>{`${transcription}`}</p>
-                      <p>{`${wordTranslate}`}</p>
-                    </div>
-                  </li>
-                ))
+                <li
+                  key={index}
+                >
+                  <div>
+                    <p>{`${word}`}</p>
+                    <p>{`${transcription}`}</p>
+                    <p>{`${wordTranslate}`}</p>
+                  </div>
+                </li>
+              ))
             }
           </ul>
           <div className="wrapper-btn ">
