@@ -121,7 +121,7 @@ const Settings = () => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(formSettings),
-  }), [formSettings, token]);
+  }), [formSettings, token]); sfa;
 
   // Запрос, чтобы поместить настройки
 
