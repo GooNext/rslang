@@ -51,7 +51,7 @@ const Dictionary = ({
     setDictionary]);
 
   return (
-    <div></div>
+    <div />
   );
 };
 

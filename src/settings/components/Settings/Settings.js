@@ -1,22 +1,18 @@
-import React, {
-  useState, useCallback, useMemo, useEffect,
-} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  Button, Row, Col,
-} from 'react-bootstrap';
+import React, { useState, useCallback, useMemo, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Button, Row, Col } from 'react-bootstrap'
 
-import { SettingOutlined } from '@ant-design/icons';
-import { fetchJSON } from '../../../common/utils';
+import { SettingOutlined } from '@ant-design/icons'
+import { fetchJSON } from '../../../common/utils'
 
-import { setSettings } from '../../redux';
-import settingsSelector from '../../redux/selectors';
+import { setSettings } from '../../redux'
+import settingsSelector from '../../redux/selectors'
 
-import { userIdSelector, tokenSelector } from '../../../auth/redux/selectors';
+import { userIdSelector, tokenSelector } from '../../../auth/redux/selectors'
 
-import { setErrorInfo } from '../../../common/redux';
+import { setErrorInfo } from '../../../common/redux'
 
-import styles from './Settings.module.css';
+import styles from './Settings.module.css'
 
 const cardsHintsInfo = [
   {
@@ -39,7 +35,7 @@ const cardsHintsInfo = [
     title: 'Картинка-ассоциация',
     name: 'wordImage',
   },
-];
+]
 
 const cardsHintsNames = [
   'wordTranslate',
@@ -47,7 +43,7 @@ const cardsHintsNames = [
   'sentenceTranslate',
   'transcription',
   'wordImage',
-];
+]
 
 const cardsBtnsInfo = [
   {
@@ -62,7 +58,7 @@ const cardsBtnsInfo = [
     title: 'Показать ответ',
     name: 'showAnswerBtn',
   },
-];
+]
 
 const intervalsInfo = [
   {
@@ -80,7 +76,7 @@ const intervalsInfo = [
     name: 'hardInterval',
     bgColor: '#1a00c5',
   },
-];
+]
 
 const interactionsInfo = [
   {
@@ -91,81 +87,95 @@ const interactionsInfo = [
     title: 'Подсказки интерфейса',
     name: 'interfaceHints',
   },
-];
+]
 
 const Settings = () => {
-  const dispatch = useDispatch();
-  const settings = useSelector(settingsSelector);
-  const userId = useSelector(userIdSelector);
-  const token = useSelector(tokenSelector);
+  const dispatch = useDispatch()
+  const settings = useSelector(settingsSelector)
+  const userId = useSelector(userIdSelector)
+  const token = useSelector(tokenSelector)
   // так как изменения происходят при нажатии кнопки сохранить
   // - использую локальный стейт для изменения настроек
-  const [formSettings, setFormSettings] = useState(settings);
-  const checkedHints = useMemo(() => cardsHintsNames.reduce(
-    (acc, state) => (formSettings.optional[state] ? acc + 1 : acc), 0,
-  ),
-  [formSettings]);
+  const [formSettings, setFormSettings] = useState(settings)
+  const checkedHints = useMemo(
+    () =>
+      cardsHintsNames.reduce(
+        (acc, state) => (formSettings.optional[state] ? acc + 1 : acc),
+        0
+      ),
+    [formSettings]
+  )
 
-  const endpoint = useMemo(() => `users/${userId}/settings`, [userId]);
+  const endpoint = useMemo(() => `users/${userId}/settings`, [userId])
 
   useEffect(() => {
-    const newSettings = { ...settings, optional: { ...settings.optional } };
-    setFormSettings(newSettings);
-  }, [settings]);
+    const newSettings = { ...settings, optional: { ...settings.optional } }
+    setFormSettings(newSettings)
+  }, [settings])
 
-  const submitFetchOptions = useMemo(() => ({
-    method: 'PUT',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formSettings),
-  }), [formSettings, token]);
+  const submitFetchOptions = useMemo(
+    () => ({
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formSettings),
+    }),
+    [formSettings, token]
+  )
 
   // Запрос, чтобы поместить настройки
 
-  const handleChange = useCallback(({ target }) => {
-    const {
-      name, type, checked, value,
-    } = target;
-    const newFormSettings = { ...formSettings };
-    if (name === 'wordsPerDay') {
-      newFormSettings[name] = type === 'checkbox' ? checked : value;
-    } else {
-      newFormSettings.optional[name] = type === 'checkbox' ? checked : value;
-    }
-    setFormSettings(newFormSettings);
-  }, [formSettings, setFormSettings]);
+  const handleChange = useCallback(
+    ({ target }) => {
+      const { name, type, checked, value } = target
+      const newFormSettings = { ...formSettings }
+      if (name === 'wordsPerDay') {
+        newFormSettings[name] = type === 'checkbox' ? checked : value
+      } else {
+        newFormSettings.optional[name] = type === 'checkbox' ? checked : value
+      }
+      setFormSettings(newFormSettings)
+    },
+    [formSettings, setFormSettings]
+  )
 
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault();
-    if (checkedHints) {
-      fetchJSON(endpoint, submitFetchOptions)
-        .then(({ id, ...data }) => dispatch(setSettings(data)))
-        .catch(() => dispatch(setErrorInfo('Ошибка при изменении настроек')));
-    }
-  }, [dispatch, endpoint, submitFetchOptions, checkedHints]);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault()
+      if (checkedHints) {
+        fetchJSON(endpoint, submitFetchOptions)
+          .then(({ id, ...data }) => dispatch(setSettings(data)))
+          .catch(() => dispatch(setErrorInfo('Ошибка при изменении настроек')))
+      }
+    },
+    [dispatch, endpoint, submitFetchOptions, checkedHints]
+  )
 
   const cancelSubmit = useCallback(() => {
-    const newSettings = { ...settings, optional: { ...settings.optional } };
-    setFormSettings(newSettings);
-  }, [setFormSettings, settings]);
+    const newSettings = { ...settings, optional: { ...settings.optional } }
+    setFormSettings(newSettings)
+  }, [setFormSettings, settings])
 
-  const createCheckboxes = useCallback((cardsInfo) => (
-    cardsInfo.map(({ title, name }) => (
-      <label key={name} htmlFor={name} className={styles.CheckboxContainer}>
-        <input
-          name={name}
-          id={name}
-          checked={formSettings.optional[name]}
-          type="checkbox"
-          onChange={handleChange}
-        />
-        <span className={styles.Checkmark} />
-        {title}
-      </label>
-    ))), [handleChange, formSettings]);
+  const createCheckboxes = useCallback(
+    (cardsInfo) =>
+      cardsInfo.map(({ title, name }) => (
+        <label key={name} htmlFor={name} className={styles.CheckboxContainer}>
+          <input
+            name={name}
+            id={name}
+            checked={formSettings.optional[name]}
+            type="checkbox"
+            onChange={handleChange}
+          />
+          <span className={styles.Checkmark} />
+          {title}
+        </label>
+      )),
+    [handleChange, formSettings]
+  )
 
   return (
     <>
@@ -195,7 +205,7 @@ const Settings = () => {
                   </label>
                 </Col>
                 <label htmlFor="wholeCardsAmount">
-            Максимальное количество карточек в день
+                  Максимальное количество карточек в день
                   <input
                     type="number"
                     name="wordsPerDay"
@@ -213,9 +223,7 @@ const Settings = () => {
           <Col lg={4}>
             <h2>Информация на карточках</h2>
             {!checkedHints && (
-              <span style={{ color: 'red' }}>
-                Выберите хотя бы 1 пункт
-              </span>
+              <span style={{ color: 'red' }}>Выберите хотя бы 1 пункт</span>
             )}
             {createCheckboxes(cardsHintsInfo)}
           </Col>
@@ -227,17 +235,16 @@ const Settings = () => {
             <h2>Настроить интервалы повторения</h2>
             {intervalsInfo.map(({ title, name, bgColor }) => (
               <label key={name} htmlFor={name} className={styles.Intervals}>
-                <div style={{
-                  marginLeft: 0,
-                  width: 20,
-                  height: 20,
-                  borderRadius: '50%',
-                  backgroundColor: bgColor,
-                }}
+                <div
+                  style={{
+                    marginLeft: 0,
+                    width: 20,
+                    height: 20,
+                    borderRadius: '50%',
+                    backgroundColor: bgColor,
+                  }}
                 />
-                <div style={{ color: '#333' }}>
-                  {title}
-                </div>
+                <div style={{ color: '#333' }}>{title}</div>
                 <input
                   name={name}
                   id={name}
@@ -273,19 +280,19 @@ const Settings = () => {
             onClick={cancelSubmit}
             className={styles.OutlineButton}
           >
-          Отменить
+            Отменить
           </Button>
           <Button
             variant="primary"
             type="submit"
             className={styles.SubmitButton}
           >
-          Сохранить
+            Сохранить
           </Button>
         </div>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default Settings;
+export default Settings
