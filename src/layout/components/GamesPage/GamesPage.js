@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   CalculatorOutlined,
   CustomerServiceOutlined,
@@ -8,8 +8,8 @@ import {
   SoundOutlined,
   FastForwardOutlined,
   UngroupOutlined,
-} from '@ant-design/icons';
-import GamePageWrapper from './GamePageWrapper';
+} from '@ant-design/icons'
+import GamePageWrapper from './GamePageWrapper'
 
 export default function GamePage() {
   return (
@@ -28,12 +28,12 @@ export default function GamePage() {
               Audio Call
             </div>
           </Link>
-          <Link className="memory" to="games/memory">
+          {/* <Link className="memory" to="games/memory">
             <div className="game-name">
               <MessageOutlined style={{ fontSize: 64 }} />
               Memory
             </div>
-          </Link>
+          </Link> */}
           <Link className="savannah" to="games/savannah">
             <div className="game-name">
               <GatewayOutlined style={{ fontSize: 64 }} />
@@ -62,5 +62,5 @@ export default function GamePage() {
         </section>
       </GamePageWrapper>
     </div>
-  );
+  )
 }

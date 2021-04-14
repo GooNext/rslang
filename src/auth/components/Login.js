@@ -1,22 +1,22 @@
-import React, { useState, useCallback } from 'react';
-import { Redirect, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { isAuthenticatedSelector } from '../redux/selectors';
-import { login } from '../redux';
-import loginUser from '../utils';
-import styles from './Auth.module.css';
+import React, { useState, useCallback } from 'react'
+import { Redirect, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { isAuthenticatedSelector } from '../redux/selectors'
+import { login } from '../redux'
+import loginUser from '../utils'
+import styles from './Auth.module.css'
 
-import { setErrorInfo } from '../../common/redux';
+import { setErrorInfo } from '../../common/redux'
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const isLogged = useSelector(isAuthenticatedSelector);
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const isLogged = useSelector(isAuthenticatedSelector)
 
   const submitHandler = useCallback(
     (event) => {
-      event.preventDefault();
+      event.preventDefault()
       loginUser({ email, password })
         .then(({ userId, token, refreshToken }) => {
           dispatch(
@@ -25,15 +25,15 @@ const Login = () => {
               token,
               userId,
               refreshToken,
-            }),
-          );
+            })
+          )
         })
-        .catch(() => dispatch(setErrorInfo('Неверный логин или пароль')));
+        .catch(() => dispatch(setErrorInfo('Неверный логин или пароль')))
     },
-    [email, password, dispatch],
-  );
+    [email, password, dispatch]
+  )
 
-  if (isLogged) return <Redirect to="/main" />;
+  if (isLogged) return <Redirect to="/games" />
 
   return (
     <div className={styles.Auth}>
@@ -66,7 +66,7 @@ const Login = () => {
         </Link>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

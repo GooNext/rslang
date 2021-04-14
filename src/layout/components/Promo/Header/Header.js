@@ -8,21 +8,6 @@ import HeaderWrapper from './HeaderWrapper'
 
 const links = [
   {
-    id: 'features',
-    title: 'Преимущества',
-    path: '#features',
-  },
-  {
-    id: 'games',
-    title: 'Игры',
-    path: '#games',
-  },
-  {
-    id: 'method',
-    title: 'Методика интервального повторения',
-    path: '#method',
-  },
-  {
     id: 'team',
     title: 'О команде',
     path: 'about',
