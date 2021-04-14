@@ -1,18 +1,12 @@
-import React, {
-  useState, useCallback, useEffect, useMemo,
-} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import PopUp from './PopUp';
 import style from './Modal.module.css';
 
 import StyleGameOver from './style.GameOver';
 import Statistics from '../Statistics/Statistics';
 
-function GameOver({
-  statistics,
-}) {
+function GameOver({ statistics }) {
   const [isStatisticsSend, setIsStatisticsSend] = useState(false);
   return (
     <div>
@@ -57,22 +51,18 @@ function GameOver({
           </ul>
           <div className="wrapper-btn ">
             <Link to="../games">
-              <button
-                className={style.btnExit}
-                type="button"
-              >
+              <button className={style.btnExit} type="button">
                 Попробовать ещё!
               </button>
             </Link>
           </div>
         </StyleGameOver>
-      )
-        : (
-          <Statistics
-            setIsStatisticsSend={setIsStatisticsSend}
-            statistics={statistics}
-          />
-        )}
+      ) : (
+        <Statistics
+          setIsStatisticsSend={setIsStatisticsSend}
+          statistics={statistics}
+        />
+      )}
     </div>
   );
 }

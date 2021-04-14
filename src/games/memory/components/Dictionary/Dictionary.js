@@ -25,11 +25,13 @@ const Dictionary = ({
   const [words, setWords] = useState(null);
   const [getNewWords, setGetNewWords] = useState(true);
 
-  const userWordsURL = useMemo(
-    () => `words?page=${page}&group=${level}`, [level],
-  );
+  const userWordsURL = useMemo(() => `words?page=${page}&group=${level}`, [
+    level,
+  ]);
 
-  const action = useCallback((wordsFromApi) => setWords(wordsFromApi), [setWords]);
+  const action = useCallback((wordsFromApi) => setWords(wordsFromApi), [
+    setWords,
+  ]);
   const wordsUseApi = useAPI(userWordsURL, fetchOptions, action);
 
   useEffect(() => {
@@ -43,12 +45,14 @@ const Dictionary = ({
     return () => {
       setGetNewWords(false);
     };
-  }, [wordsUseApi,
+  }, [
+    wordsUseApi,
     words,
     getNewWords,
     setEnglishWords,
     setRussianWords,
-    setDictionary]);
+    setDictionary,
+  ]);
 
   return (
     <div />
@@ -66,9 +70,9 @@ Dictionary.propTypes = {
 Dictionary.defaultProps = {
   level: 0,
   page: 0,
-  setDictionary: () => { },
-  setRussianWords: () => { },
-  setEnglishWords: () => { },
+  setDictionary: () => {},
+  setRussianWords: () => {},
+  setEnglishWords: () => {},
 };
 
 export default Dictionary;
