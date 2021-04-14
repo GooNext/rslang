@@ -1,0 +1,78 @@
+.footer {
+        display: flex;
+        justify-content: space-around;
+        height: 5vh;
+        align-items: center;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid rgb(212, 212, 212);
+}
+.footer__content {
+        display: flex;
+        justify-content: space-around;
+        align-items:center;
+        flex-wrap:wrap;
+        color: #000;
+        padding: 3px 10px;
+}
+.footer__content a{ 
+        display:inline-block;
+        padding:10px;
+        color: #000;
+        text-decoration: underline;
+      }
+
+a.rollover__vl {
+        display: block;
+       }
+a.rollover__vl:hover {
+        display: block;
+        background-size: contain;
+        background-position: center;
+        color: transparent;
+       }
+a.rollover__vd {
+        display: block;
+       }
+a.rollover__vd:hover {
+        display: block;
+        background-size: contain;
+        background-position: center;
+        color: transparent;
+       }
+a.rollover__ii {
+        display: block;
+       }
+a.rollover__ii:hover {
+        display: block;
+        background-size: contain;
+        background-position: center;
+        color: transparent;
+       }
+a.rollover__vs {
+        display: block;
+       }
+a.rollover__vs:hover {
+        display: block;
+        background-size: contain;
+        background-position: center;
+        color: transparent;
+       }
+a.rollover__vld {
+        display: block;
+       }
+a.rollover__vld:hover {
+        display: block;
+        background-size: contain;
+        background-position: center;
+        color: transparent;
+       }
+a.rollover__sp {
+        display: block;
+       }
+a.rollover__sp:hover {
+        display: block;
+        background-size: contain;
+        background-position: center;
+        color: transparent;
+       }
